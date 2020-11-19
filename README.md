@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# Smoothies2Go Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Smoothies2Go is a mockup project to help the any Smoothies Cafe' clients to pre-order online and pickup Smoothies on the Go. This is an effort to promote the business and sales of joints by encouraging their clients and customers to pre-order and pick their items on the go. This will save the customer's time, and also support social distancing in the Corona Pandemic situation. The idea is to expand the project to make it a cheaper option to DoorDash, UberEats and Grubhub and save restaurant owners and joint owners the high commission charges (approx. 20% commission per order) which cuts down on their profits.
 
-## Available Scripts
+### Smoothies2Go Project Sections
 
-In the project directory, you can run:
+- Frontend Repo to bbe deployed in netlify
 
-### `yarn start`
+Technologies - React, Materialize, Axios
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Backend Repo to be deployed in Heroku
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Technologies -Java Spring, MongoDB / PostgreSQL
 
-### `yarn test`
+## Smoothies2Go Frontend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This repo contains the frontend code for the Smoothies2Go Project. It was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### `yarn build`
+### Wireframe
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[Mobile Layout](https://res.cloudinary.com/dreamer123/image/upload/v1605822175/Capstone/Fresh-To-Go_-_Mobile_Layout_rjwwyx.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### React Architecture Diagram
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[React Architecture Diagram Link](https://res.cloudinary.com/dreamer123/image/upload/v1605822428/Capstone/Smoothies2Go-React-Arcitecture-Diagram_wm5hl7.png)
 
-### `yarn eject`
+## Notion
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+[Notion Link](https://www.notion.so/Smoothies2Go-planning-1cfe62a022084da4bb7fa08bb1222e43)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## MVPs and Post MVPs
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### MVPs
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Project Planning and Documentation
+Setup repos with folder structure
+Initial Deploy to heroku and netlify
+Java Spring with Database Review
+Enity builtup
+Controller builtup
+Seed postgres/mongodb with menu items
+Material Navbar Integration
+Material MenuBar Integration
+Menu Display with Categories
+Detail Display
+Add to Cart
+Edit and Delete From Cart
+Checkout Item
+Confirmation Page
+CSS Styling and Responsive Layout
 
-## Learn More
+### Post-MVP
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Stripe Payment Integration
+User Signup, Sign and Signout
+Search bar
+My Orders
+Framer Motion
+SASS Styling
+Add carousel
+Update Documentation
+Code Cleanup
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Libraries
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- react-router and react-router-dom for routing the pages
+- axios for backend API calls
