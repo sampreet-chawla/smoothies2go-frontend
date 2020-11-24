@@ -2,15 +2,27 @@
 
 The Smoothies2Go is a mockup project to help the any Smoothies Cafe' clients to pre-order online and pickup Smoothies on the Go. This is an effort to promote the business and sales of joints by encouraging their clients and customers to pre-order and pick their items on the go. This will save the customer's time, and also support social distancing in the Corona Pandemic situation. The idea is to expand the project to make it a cheaper option to DoorDash, UberEats and Grubhub and save restaurant owners and joint owners the high commission charges (approx. 20% commission per order) which cuts down on their profits.
 
-### Smoothies2Go Project Sections
+### About Project
 
-- Frontend Repo to bbe deployed in netlify
+- Frontend Repo deployed in netlify
 
-Technologies - React, Materialize, Axios
+  [Website](https://smoothies2go.netlify.app/)
 
-- Backend Repo to be deployed in Heroku
+  Technologies - React, MBBootstrap, Axios
 
-Technologies -Java Spring, MongoDB / PostgreSQL
+  References
+
+        - [MDBootstrap Components](https://mdbootstrap.com/docs/react/getting-started/quick-start/)
+        - [MDBootstrap eCommence Template](https://mdbootstrap.com/freebies/jquery/e-commerce/)
+        - [Stripe](https://stripe.com/docs/checkout/integration-builder)
+
+- Backend Repo deployed in Heroku
+
+  [Backend App](https://smoothies2go-express-backend.herokuapp.com)
+
+  Technologies - Express and MongoDB
+
+  It provides Backend APIs for Smoothies2go, and also acts as Stripe Payment Server
 
 ## Smoothies2Go Frontend
 
