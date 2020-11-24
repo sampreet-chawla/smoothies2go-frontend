@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getItemsByCategories } from "../../api-helpers/item";
+import { getItemsByCategories } from "../../api-services/item-service";
 import { BACKEND_URL } from "../../constants";
 import CategoryRow from "../CategoryRow/CategoryRow";
 import axios from "axios";
