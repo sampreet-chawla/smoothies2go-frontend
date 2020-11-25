@@ -20,7 +20,7 @@ function CategoryRow({ title, items }) {
       item: item._id,
       qty: 1,
     });
-    console.log("Added to cart");
+    window.alert(`1 ${item.item_name} added to cart`);
     loadCartData();
   };
 
