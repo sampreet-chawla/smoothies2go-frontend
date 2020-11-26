@@ -2,48 +2,24 @@ import React, { useEffect, useState } from "react";
 import "./Cart.scss";
 import CartItem from "../CartItem/CartItem";
 import { Link } from "react-router-dom";
+import { round } from "../../utils";
 
 function Cart({ user, cartData, loadCartData }) {
-  //   const [cartItems, setCartItems] = useState(cartData);
+  // Build the Empty Cart Message
+  const loadEmptyCartMessage = () => (
+    <section className="cart">
+      <p>There are no items in the cart.</p>
+      <Link to="/">
+        <button type="button" className="btn btn-primary">
+          Happy Shopping !!!
+        </button>
+      </Link>
+    </section>
+  );
 
-  //   const reloadCardData = async () => {
-  //     await loadCartData();
-  //     console.log("Setting card data ", cartData);
-  //     setCartItems(cartData);
-  //   };
-
-  //   useEffect(() => {
-  //     reloadCardData();
-  //   }, []);
-  //   console.log("Card Items now: ", cartItems);
-
-  //   // Update Quantity for a cart-item
-  //   const handleQuantity = (event, cartId) => {
-  //     event.preventDefault();
-  //     // const updatedSong = { ...song, is_fav: !song.is_fav };
-  //     // updateFavSong(updatedSong);
-  //     console.log(
-  //       `Handle Quantity... for qty ${event.target.value} and cartId ${cartId}`
-  //     );
-  //   };
-
-  //   // Remove a cart-item
-  //   const handleRemove = (event, cartId, itemName) => {
-  //     event.preventDefault();
-  //     if (
-  //       window.confirm(`Are you sure you want to remove the Item: ${itemName}`)
-  //     ) {
-  //       //   removeItem(songId);
-  //       console.log(
-  //         "Remove item Request accepted.. handle it for cartId",
-  //         cartId
-  //       );
-  //     }
-  //   };
-
-  // Build the item List
+  // Build the cart item for every cart-item in the list
   const loadCartItems = () => {
-    return cartData.map((cartItem) => {
+    const cartItemsJSX = cartData.map((cartItem) => {
       return (
         <CartItem
           key={cartItem._id}
@@ -52,83 +28,76 @@ function Cart({ user, cartData, loadCartData }) {
           loadCartData={loadCartData}
         />
       );
-      //   const item = cartItem.item;
-      //   return (
-      //     <div className="item-details" key={cartItem._id}>
-      //       <p>
-      //         <img
-      //           src={item.thumbnail_image_url}
-      //           // className="card-img-top"
-      //           alt={item.item_name}
-      //           width="75px"
-      //         />
-      //         &ensp;
-      //         <span className="font-weight-bold black-text">
-      //           {item.item_name}
-      //         </span>
-      //       </p>
-      //       <p>${item.price * cartItem.qty}</p>
-      //       <p>
-      //         <input
-      //           type="number"
-      //           //   style={{ width: "5vw", textAlign: "center" }}
-      //           className="quantity"
-      //           //   name="quantity"
-      //           value={cartItem.qty}
-      //           min="1"
-      //           //   size="3"
-      //           //   maxLength="3"
-      //           onChange={(e) => handleQuantity(e, cartItem._id)}
-      //         />
-      //       </p>
-      //       <p>
-      //         <button
-      //           className="btn btn-white"
-      //           style={{ width: "2vw", textAlign: "center" }}
-      //           onClick={(e) => handleRemove(e, cartItem._id, item.item_name)}
-      //         >
-      //           X
-      //         </button>
-      //       </p>
-      //     </div>
-      //   );
     });
+
+    return cartItemsJSX;
   };
 
-  // Display the Cart
-  if (cartData && cartData.length > 0) {
+  // Build the Cart with Cart Items
+  const loadCart = () => (
+    <section className="cart">
+      <div className="items-header" style={{ backgroundColor: "#E1E5E8" }}>
+        <p>Item </p>
+        <p>Price</p>
+        <p>Qty</p>
+        <p>Remove</p>
+      </div>
+      <hr />
+      {loadCartItems()}
+      <div style={{ textAlign: "center" }}>
+        <Link to="/">
+          <button type="button" class="btn btn-primary">
+            Continue Shopping
+          </button>
+        </Link>
+      </div>
+    </section>
+  );
+
+  // Build the Summary section
+  const loadSummary = () => {
+    let subTotalPrice = cartData.reduce(
+      (subTotalPrice, cartItem) =>
+        (subTotalPrice = round(
+          subTotalPrice + cartItem.item.price * cartItem.qty,
+          2
+        )),
+      0.0
+    );
+    const feesAndTax = round(subTotalPrice * 0.1, 2);
+    const totalPrice = round(subTotalPrice + feesAndTax, 2);
     return (
-      <section>
-        <div className="items-header" style={{ backgroundColor: "#E1E5E8" }}>
-          <p>Item </p>
-          <p>Price</p>
-          <p>Qty</p>
-          <p>Remove</p>
-        </div>
-        <hr />
-        {loadCartItems()}
-        <div style={{ textAlign: "center" }}>
-          <Link to="/">
-            <button type="button" class="btn btn-primary">
-              Continue Shopping
-            </button>
-          </Link>
+      <section className="summary">
+        <div className="summary">
+          <h2 className="h2-responsive">Summary</h2>
+          <p>Sub-total.price: ${subTotalPrice}</p>
+          <p>Fees and Tax:: ${feesAndTax}</p>
+          <p>Total Price: ${totalPrice}</p>
+          <p>
+            <Link to="/confirmation">
+              <button type="button" className="btn btn-primary" role="link">
+                <i className="fa fa-lock"></i> &nbsp; Confirm Purchase
+              </button>
+            </Link>
+          </p>
         </div>
       </section>
     );
-  } else {
-    // Return message when there are no items in the cart.
-    return (
-      <>
-        <p>There are no items to the cart.</p>
-        <Link to="/">
-          <button type="button" class="btn btn-primary">
-            Happy Shopping !!!
-          </button>
-        </Link>
-      </>
-    );
-  }
+  };
+
+  const loadCartAndSummary = () => (
+    <section className="cart-summary-container">
+      {loadCart()}
+      {loadSummary()}
+    </section>
+  );
+
+  // If order is placed, do not display the cart, return an empty fragment
+  // Else if there are items in the cart, display the cart
+  // Else show empty cart message
+  return cartData && cartData.length > 0
+    ? loadCartAndSummary()
+    : loadEmptyCartMessage();
 }
 
 export default Cart;
