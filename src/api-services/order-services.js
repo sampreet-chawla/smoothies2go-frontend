@@ -1,11 +1,11 @@
 import { BACKEND_URL } from "../constants";
 import axios from "axios";
 
-export const updateOrderPaid = async (orderId, userId) => {
+export const updateOrderPaid = async (orderId) => {
   try {
     const data = await axios({
       method: "put",
-      url: `${BACKEND_URL}/api/orders/paid/id/${orderId}/user/${userId}`,
+      url: `${BACKEND_URL}/api/orders/paid/id/${orderId}`,
     });
     console.log("updateOrderPaid data", data.data);
     const orderDetails = data.data.data;

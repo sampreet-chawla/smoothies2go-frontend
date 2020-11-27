@@ -77,7 +77,7 @@ function Confirmation({ user, cartData, loadCartData, label }) {
     if (query.get("success")) {
       // Update Order status in Backend database
       const orderId = query.get("orderId");
-      const order = await updateOrderPaid(orderId, user._id);
+      const order = await updateOrderPaid(orderId);
       setOrder(order);
       console.log("Success order: ", order);
       // Set success message
