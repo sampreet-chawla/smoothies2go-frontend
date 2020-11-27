@@ -1,6 +1,12 @@
 import "./App.scss";
 import React, { useState, useEffect, createContext } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 import ItemsDisplay from "../ItemsDisplay/ItemsDisplay";
 import Cart from "../Cart/Cart";
 import Confirmation from "../Confirmation/Confirmation";
@@ -81,6 +87,7 @@ function App() {
                 />
               )}
             />
+            <Redirect to="/" />
           </Switch>
         </main>
       </Router>
