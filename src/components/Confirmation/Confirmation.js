@@ -1,125 +1,110 @@
 import React, { useState, useEffect } from "react";
-import { round } from "../../utils";
+import { Link } from "react-router-dom";
+import Cart from "../Cart/Cart";
+import {
+  BACKEND_URL,
+  STRIPE_PUBLISHABLE_KEY,
+  PAID_STATUS,
+} from "../../constants";
+
+import {
+  updateOrderPaid,
+  updateOrderCancelled,
+} from "../../api-services/order-services";
 
 import { loadStripe } from "@stripe/stripe-js";
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render. Specify the Publisher API Key.
-const stripePromise = loadStripe(
-  "pk_test_51HpbVCG9f8uyvBw0jfj9G5PmbcuqWEW2Byis1w4apIYcImA6OCJITqtozwv8yio7uqD4ikEyW9jV7wzk8jRNQMkH00mCY3WVWs"
-);
+const stripePromise = loadStripe(STRIPE_PUBLISHABLE_KEY);
 
-function Confirmation({ user, cartData, loadCartData }) {
-  let chargeDetails = {
-    subTotalPrice: 0.0,
-    feesAndTax: 0.0,
-    totalPrice: 0.0,
-  };
-  // const loadSuccessContent = () => {
-  //   return (<div className="cover">
-  //   <div className="confirm">
-  //     <h2>Thank you!</h2>
-  //     <p>
-  //       The order has been confirmed, and will be ready for pickup in 15-20minutes, here are the
-  //       details
-  //     </p>
-  //     <hr />
-  //     <div>
-  //       <h5>Confirmation will be sent to your email: {}</h5>
-  //       <h5>Order number: #123456</h5>
-  //       <h5>Order date: {new Date().toString()}</h5>
-  //       <h5>Order total: ${}</h5>
-  //       <Link to="/">
-  //         <button>Continue shopping</button>
-  //       </Link>
-  //     </div>
-  //   </div>
-  // </div>);
-  // }
+function Confirmation({ user, cartData, loadCartData, label }) {
+  const [order, setOrder] = useState({});
+  const [message, setMessage] = useState("");
 
-  // const loadCancelledContent = () => {
-  //   return (<div className="cover">
-  //   <div className="confirm">
-  //     <h2>Thank you!</h2>
-  //     <p>
-  //       The order will be ready for pickup in 15-20minutes, here are the
-  //       details
-  //     </p>
-  //     <hr />
-  //     <div>
-  //       <h5>Confirmation will be sent to your email: {}</h5>
-  //       <h5>Order number: #123456</h5>
-  //       <h5>Order date: {new Date().toString()}</h5>
-  //       <h5>Order total: ${}</h5>
-  //       <Link to="/">
-  //         <button>Continue shopping</button>
-  //       </Link>
-  //     </div>
-  //   </div>
-  // </div>);
-  // }
-
-  const OrderDisplay = ({ handleClick }) => {
-    let subTotalPrice = cartData.reduce(
-      (subTotalPrice, cartItem) =>
-        (subTotalPrice = round(
-          subTotalPrice + cartItem.item.price * cartItem.qty,
-          2
-        )),
-      0.0
-    );
-    const feesAndTax = round(subTotalPrice * 0.1, 2);
-    const totalPrice = round(subTotalPrice + feesAndTax, 2);
-    chargeDetails = { subTotalPrice, feesAndTax, totalPrice };
-
+  const loadOrderContent = () => {
     return (
-      <section className="summary">
-        <div className="summary">
-          <h2 className="h2-responsive">Summary</h2>
-          <p>Sub-total.price: ${subTotalPrice}</p>
-          <p>Fees and Tax:: ${feesAndTax}</p>
-          <p>Total Price: ${totalPrice}</p>
-          <p>
-            <button
-              type="button"
-              className="btn btn-primary"
-              role="link"
-              onClick={handleClick}
-            >
-              <i className="fa fa-lock"></i> &nbsp; Make Payment
-            </button>
-          </p>
+      <div className="cover" style={{ margin: "0 20px" }}>
+        <div className="confirm">
+          {order.order_status === PAID_STATUS ? (
+            <h4 className="h4-responsive">
+              Thank You! Your order has been confirmed, and will be ready for
+              pickup in 15-20minutes, here are the details -
+            </h4>
+          ) : (
+            <h4 class="h4-responsive">
+              The order has been cancelled, here are the details -
+            </h4>
+          )}
+          <br />
+          <br />
+          <div style={{ textAlign: "left" }}>
+            {/* <h5 className="h5-responsive">
+              Confirmation will be sent to your email: {}
+            </h5> */}
+            <h5 className="h5-responsive">Order number: #{order._id}</h5>
+            <h5 className="h5-responsive">
+              Order date: {new Date(order.order_date_time).toString()}
+            </h5>
+            <h5 className="h5-responsive">Order total: ${order.total_price}</h5>
+            <h5 className="h5-responsive">
+              Order Status: {order.order_status}
+            </h5>
+            <h5 className="h5-responsive">
+              Please visit us again, If you have missed something, please{" "}
+            </h5>
+            <Link to="/">
+              <button type="button" className="btn btn-primary" role="link">
+                Continue Shopping
+              </button>
+            </Link>
+          </div>
         </div>
-      </section>
+      </div>
     );
   };
 
   const Message = ({ message }) => (
     <section>
-      <p>{message}</p>
+      <h2 className="h2-responsive">{message}</h2>
+      <hr />
     </section>
   );
 
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
+  const loadOrderResponse = async () => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
+
     if (query.get("success")) {
-      setMessage("Order placed! You will receive an email confirmation.");
+      // Update Order status in Backend database
+      const orderId = query.get("orderId");
+      const order = await updateOrderPaid(orderId, user._id);
+      setOrder(order);
+      console.log("Success order: ", order);
+      // Set success message
+      setMessage("Thank You! Your Order is placed!");
     }
     if (query.get("canceled")) {
+      // Update Order status in Backend database
+      const order = await updateOrderCancelled(order.orderId);
+      setOrder(order);
+
+      // Set Failed message
       setMessage(
         "Order canceled -- continue to shop around and checkout when you're ready."
       );
     }
+  };
+
+  useEffect(() => {
+    loadOrderResponse();
   }, []);
 
-  const handleClick = async (event) => {
+  const handleClick = async (subTotalPrice, feesAndTax, totalPrice) => {
     console.log("handleClick called.. ");
     try {
       const stripe = await stripePromise;
       const response = await fetch(
-        "http://localhost:4501/api/stripe-payment/create-session",
+        `${BACKEND_URL}/api/stripe-payment/create-session`,
         {
           method: "POST",
           headers: {
@@ -127,14 +112,24 @@ function Confirmation({ user, cartData, loadCartData }) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            amt: chargeDetails.totalPrice * 100,
+            // amt: chargeDetails.totalPrice * 100,
+            amt: totalPrice * 100,
             userEmail: user.email,
+            userId: user._id,
+            cart_items: cartData.reduce((cartIds, cartItem) => {
+              cartIds.push(cartItem._id);
+              return cartIds;
+            }, []),
+            sub_total_price: subTotalPrice,
+            fees_tax: feesAndTax,
+            total_price: totalPrice,
           }),
         }
       );
       console.log("create-session called.. ");
       const session = await response.json();
-      // When the customer clicks on the button, redirect them to Checkout.
+
+      // Redirect customer to Strike Checkout Form.
       console.log("Redirecting to checkout.. ");
       const result = await stripe.redirectToCheckout({
         sessionId: session.id,
@@ -156,9 +151,21 @@ function Confirmation({ user, cartData, loadCartData }) {
   };
 
   return message ? (
-    <Message message={message} />
+    <div
+      className="order-confirmation"
+      style={{ textAlign: "center", width: "80vw" }}
+    >
+      <Message message={message} />
+      {order && order.order_status ? loadOrderContent() : <></>}
+    </div>
   ) : (
-    <OrderDisplay handleClick={handleClick} />
+    <Cart
+      user={user}
+      cartData={cartData}
+      loadCartData={loadCartData}
+      label={label}
+      handleClick={handleClick}
+    />
   );
 }
 

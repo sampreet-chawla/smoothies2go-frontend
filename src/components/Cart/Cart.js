@@ -3,8 +3,9 @@ import "./Cart.scss";
 import CartItem from "../CartItem/CartItem";
 import { Link } from "react-router-dom";
 import { round } from "../../utils";
+import { SHOW_CART } from "../../constants";
 
-function Cart({ user, cartData, loadCartData }) {
+function Cart({ user, cartData, loadCartData, label, handleClick }) {
   // Build the Empty Cart Message
   const loadEmptyCartMessage = () => (
     <section className="cart">
@@ -26,6 +27,7 @@ function Cart({ user, cartData, loadCartData }) {
           cartItem={cartItem}
           user={user}
           loadCartData={loadCartData}
+          label={label}
         />
       );
     });
@@ -40,13 +42,13 @@ function Cart({ user, cartData, loadCartData }) {
         <p>Item </p>
         <p>Price</p>
         <p>Qty</p>
-        <p>Remove</p>
+        {label === SHOW_CART ? <p>Remove</p> : <></>}
       </div>
       <hr />
       {loadCartItems()}
       <div style={{ textAlign: "center" }}>
         <Link to="/">
-          <button type="button" class="btn btn-primary">
+          <button type="button" className="btn btn-primary">
             Continue Shopping
           </button>
         </Link>
@@ -67,12 +69,13 @@ function Cart({ user, cartData, loadCartData }) {
     const feesAndTax = round(subTotalPrice * 0.1, 2);
     const totalPrice = round(subTotalPrice + feesAndTax, 2);
     return (
-      <section className="summary">
-        <div className="summary">
-          <h2 className="h2-responsive">Summary</h2>
-          <p>Sub-total.price: ${subTotalPrice}</p>
-          <p>Fees and Tax:: ${feesAndTax}</p>
-          <p>Total Price: ${totalPrice}</p>
+      <section className="summary" style={{ margin: "0 20px" }}>
+        <h2 className="h2-responsive">Summary</h2>
+        <p>Sub-total.price: ${subTotalPrice}</p>
+        <p>Fees and Tax:: ${feesAndTax}</p>
+        <p>Total Price: ${totalPrice}</p>
+        {/* If ShOW_CART, then show "Confirm Purchase" button  */}
+        {label === SHOW_CART ? (
           <p>
             <Link to="/confirmation">
               <button type="button" className="btn btn-primary" role="link">
@@ -80,7 +83,19 @@ function Cart({ user, cartData, loadCartData }) {
               </button>
             </Link>
           </p>
-        </div>
+        ) : (
+          <p>
+            {/* Else for SHOW_ORDER, display the "Make Payment" button to direct to Payment Server */}
+            <button
+              type="button"
+              className="btn btn-primary"
+              role="link"
+              onClick={() => handleClick(subTotalPrice, feesAndTax, totalPrice)}
+            >
+              <i className="fa fa-lock"></i> &nbsp; Make Payment
+            </button>
+          </p>
+        )}
       </section>
     );
   };

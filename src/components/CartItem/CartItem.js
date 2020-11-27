@@ -6,9 +6,10 @@ import {
 } from "../../api-services/cart-service";
 
 import { round } from "../../utils";
+import { SHOW_CART } from "../../constants";
 // import "./Cart.scss";
 
-function CartItem({ cartItem, user, loadCartData }) {
+function CartItem({ cartItem, user, loadCartData, label }) {
   const [qty, setQty] = useState(parseInt(cartItem.qty));
 
   // Update Quantity for a cart-item
@@ -21,7 +22,7 @@ function CartItem({ cartItem, user, loadCartData }) {
       window.alert("Quantity cannot be less than or equal to 0");
       setQty(1);
       window.focus(event.target);
-    } else if (qtyValue != "") {
+    } else if (qtyValue !== "") {
       console.log(
         `Handling Quantity... for qty ${qtyValue} and cartId ${cartId}`
       );
@@ -59,32 +60,42 @@ function CartItem({ cartItem, user, loadCartData }) {
         <span className="font-weight-bold black-text">{item.item_name}</span>
       </p>
       <p>${round(item.price * qty, 2)}</p>
-      <p>
-        <input
-          type="number"
-          style={{ textAlign: "center" }}
-          className="quantity"
-          name="qty"
-          value={qty}
-          min="1"
-          //   size="3"
-          //   maxLength="3"
-          onChange={(e) => handleQuantity(e, cartItem._id)}
-        />
-      </p>
-      <p>
-        <button
-          className="btn btn-white"
-          style={{
-            width: "2vw",
-            textAlign: "center",
-            padding: ".84rem 1.2rem .84rem .84rem",
-          }}
-          onClick={(e) => handleRemove(e, cartItem._id, item.item_name)}
-        >
-          X
-        </button>
-      </p>
+      {label === SHOW_CART ? (
+        <>
+          {/* If SHOW_CART, then show Qty in editable mode, and also show the Remove button */}
+          <p>
+            <input
+              type="number"
+              style={{ textAlign: "center" }}
+              className="quantity"
+              name="qty"
+              value={qty}
+              min="1"
+              //   size="3"
+              //   maxLength="3"
+              onChange={(e) => handleQuantity(e, cartItem._id)}
+            />
+          </p>
+          <p>
+            <button
+              className="btn btn-white"
+              style={{
+                width: "2vw",
+                textAlign: "center",
+                padding: ".84rem 1.2rem .84rem .84rem",
+              }}
+              onClick={(e) => handleRemove(e, cartItem._id, item.item_name)}
+            >
+              X
+            </button>
+          </p>
+        </>
+      ) : (
+        <p>
+          {/* Else for  SHOW_ORDER, display the Qty in non-editable mode, and do not show the Remove button */}
+          {`${round(item.price * qty, 2)}`}
+        </p>
+      )}
     </div>
   );
 }
