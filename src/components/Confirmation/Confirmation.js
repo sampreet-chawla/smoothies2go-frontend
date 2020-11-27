@@ -50,7 +50,7 @@ function Confirmation({ user, cartData, loadCartData, label }) {
               Order Status: {order.order_status}
             </h5>
             <h5 className="h5-responsive">
-              Please visit us again, If you have missed something, please{" "}
+              Please visit us again! If you have missed something -
             </h5>
             <Link to="/">
               <button type="button" className="btn btn-primary" role="link">
@@ -79,6 +79,7 @@ function Confirmation({ user, cartData, loadCartData, label }) {
       const orderId = query.get("orderId");
       const order = await updateOrderPaid(orderId);
       setOrder(order);
+      await loadCartData();
       console.log("Success order: ", order);
       // Set success message
       setMessage("Thank You! Your Order is placed!");
