@@ -10,6 +10,7 @@ import Navbar from "../Navbar/Navbar";
 import Header from "../Header/Header";
 import Login from "../Login/Login";
 import SignUp from "../SignUp/SignUp";
+import Footer from "../Footer/Footer";
 
 export const AppContext = createContext(null);
 
@@ -151,6 +152,7 @@ function App({ history }) {
           <Redirect to="/" />
         </Switch>
       </main>
+      <Footer />
     </AppContext.Provider>
   );
 }

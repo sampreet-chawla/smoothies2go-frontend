@@ -35,7 +35,7 @@ const Login = (props) => {
 
   return (
     <div className="form-container">
-      <MDBRow>
+      <MDBRow> 
         <MDBCol md="0">
           <MDBCard>
             <MDBCardBody>
