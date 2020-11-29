@@ -45,7 +45,7 @@ function ItemsDisplay(props) {
 
   const rowJSX = itemsList.map((row, index) => (
     <CategoryRow
-      id={`row${index}`}
+      id={`category${index + 1}`}
       key={index}
       title={row.category}
       items={row.items}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -8,15 +9,10 @@ import {
   MDBNavbarToggler,
   MDBCollapse,
   MDBFormInline,
-  MDBDropdown,
-  MDBDropdownToggle,
-  MDBDropdownMenu,
-  MDBDropdownItem,
-  MDBIcon,
 } from "mdbreact";
 import "./Navbar.css";
 
-function Navbar(props) {
+function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleCollapse = () => setIsOpen(!isOpen);
@@ -26,9 +22,7 @@ function Navbar(props) {
     <nav className="nav-container">
       <MDBNavbar color="default-color" dark expand="md">
         <MDBNavbarBrand>
-          {/* <strong className="white-text">Smoothies2Go</strong> */}
-          {/* <p>Smoothies2Go</p> */}
-          <MDBNavLink to="/">Smoothies2Go</MDBNavLink>
+          <MDBNavLink to="/#category1">Smoothies2Go</MDBNavLink>
           {/* <img
           className="header-logo"
           src="https://i.imgur.com/5RzBohZt.png"
@@ -39,27 +33,27 @@ function Navbar(props) {
         <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
           <MDBNavbarNav left>
             <MDBNavItem active>
-              <MDBNavLink to="#!" onClick={closeBurger}>
+              <MDBNavLink to="/#category1" onClick={closeBurger}>
                 Popular
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="#!" onClick={closeBurger}>
+              <MDBNavLink to="/#category2" onClick={closeBurger}>
                 Fruity
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="#!" onClick={closeBurger}>
+              <MDBNavLink to="/#category3" onClick={closeBurger}>
                 Veggie
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="#!" onClick={closeBurger}>
+              <MDBNavLink to="/#category4" onClick={closeBurger}>
                 Breakfast
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="#!" onClick={closeBurger}>
+              <MDBNavLink to="/#category5" onClick={closeBurger}>
                 Sides
               </MDBNavLink>
             </MDBNavItem>

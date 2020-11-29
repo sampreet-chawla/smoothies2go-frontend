@@ -1,8 +1,9 @@
 import React from "react";
 import { addToCart } from "../../api-services/item-service";
 import { AppContext } from "../App/App";
+import "./CategoryRow.css";
 
-function CategoryRow({ title, items }) {
+function CategoryRow({ id, title, items }) {
   const { user, loadCartData } = React.useContext(AppContext);
 
   const handleAddToCart = async (item) => {
@@ -73,8 +74,18 @@ function CategoryRow({ title, items }) {
   };
 
   return (
-    <section className="text-center mb-4">
-      <h3 className="h3-responsive">{title}</h3>
+    <section className="text-center mb-4" id={id}>
+      <div className="hidden-div">
+        <h1>Hidden Div</h1>
+      </div>
+      <h3
+        className="h3-responsive"
+        style={{ backgroundColor: "pink", padding: "10px" }}
+      >
+        <strong>
+          <em>{title}</em>
+        </strong>
+      </h3>
       <div className="row wow fadeIn">{loadItemCards()}</div>
     </section>
   );

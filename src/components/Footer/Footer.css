@@ -6,7 +6,6 @@ footer {
   background: var(--light-sea-green);
   overflow: hidden;
   z-index: 2;
-  padding: 0px;
   vertical-align: middle;
   text-align: center;
   padding: 5px;
@@ -30,7 +29,8 @@ footer a:visited {
     height: 35px;
   }
 
-  footer p {
+  footer p,
+  footer a {
     font-size: 16px;
   }
 }

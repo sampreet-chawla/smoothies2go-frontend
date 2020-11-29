@@ -57,11 +57,23 @@ function App({ history }) {
     }
   };
 
+  // For Anchor Tags within React Routes (via Navbar)
+  const takeToHashPosition = () => {
+    const hash = history.location.hash;
+    if (hash && document.getElementById(hash.substr(1))) {
+      // Check if there is a hash and if an element with that id exists
+      document
+        .getElementById(hash.substr(1))
+        .scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   useEffect(() => {
     // window.scrollTo(0, 0);
     checkStripeResponseQueryParams();
     loadCartData();
-  }, []);
+    takeToHashPosition();
+  }, [history.location.hash]);
 
   const cartCount = () => {
     return cartData ? cartData.length : 0;
@@ -81,7 +93,8 @@ function App({ history }) {
           />
         )}
       />
-      <Navbar />
+      <Route component={Navbar} />
+      {/* <Navbar /> */}
       {/* TODO - To be replaced with a NavBar */}
       <div className="navbar" style={{ textAlign: "right" }}>
         <Link to="/cart">
