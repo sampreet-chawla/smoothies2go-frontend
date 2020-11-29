@@ -3,7 +3,7 @@ import "./Cart.css";
 import CartItem from "../CartItem/CartItem";
 import { Link } from "react-router-dom";
 import { round } from "../../utils";
-import { SHOW_CART } from "../../constants";
+import { SHOW_CART, SHOW_ORDER } from "../../constants";
 import { MDBRow, MDBCol, MDBInput, MDBCard, MDBCardBody } from "mdbreact";
 
 function Cart({ user, cartData, loadCartData, label, handleClick }) {
@@ -39,11 +39,11 @@ function Cart({ user, cartData, loadCartData, label, handleClick }) {
   // Build the Cart with Cart Items
   const loadCart = () => (
     <section className="cart">
-      <div className="items-header" style={{ backgroundColor: "#E1E5E8" }}>
-        <p>Item </p>
-        <p>Price</p>
-        <p>Qty</p>
-        {label === SHOW_CART ? <p>Remove</p> : <></>}
+      <div className="items-header">
+        <p>ITEM </p>
+        <p>PRICE</p>
+        <p>QTY</p>
+        {label === SHOW_CART ? <p>REMOVE</p> : <></>}
       </div>
       <hr />
       {loadCartItems()}
@@ -70,15 +70,24 @@ function Cart({ user, cartData, loadCartData, label, handleClick }) {
     const feesAndTax = round(subTotalPrice * 0.1, 2);
     const totalPrice = round(subTotalPrice + feesAndTax, 2);
     return (
-      <MDBRow>
-        <MDBCol md="0">
-          <MDBCard>
-            <MDBCardBody>
-              <section className="summary" style={{ margin: "0 20px" }}>
+      <section className="summary" style={{ margin: "20px 20px" }}>
+        <MDBRow>
+          <MDBCol md="0">
+            <MDBCard>
+              <MDBCardBody>
                 <h2 className="h2-responsive">Summary</h2>
-                <p>Sub-total.price: ${subTotalPrice}</p>
-                <p>Fees and Tax: ${feesAndTax}</p>
-                <p>Total Price: ${totalPrice}</p>
+                <p>
+                  Sub-total Price:{" "}
+                  <span className="price-align">${subTotalPrice}</span>
+                </p>
+                <p>
+                  Fees and Tax:{" "}
+                  <span className="price-align">${feesAndTax}</span>
+                </p>
+                <p>
+                  Total Price:{" "}
+                  <span className="price-align">${totalPrice}</span>
+                </p>
                 {/* If ShOW_CART, then show "Confirm Purchase" button  */}
                 {label === SHOW_CART ? (
                   <p>
@@ -107,11 +116,30 @@ function Cart({ user, cartData, loadCartData, label, handleClick }) {
                     </button>
                   </p>
                 )}
-              </section>
-            </MDBCardBody>
-          </MDBCard>
-        </MDBCol>
-      </MDBRow>
+                {label === SHOW_ORDER ? (
+                  <p>
+                    <small style={{ color: "gray" }}>
+                      Please use following test cards - <br />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <span style={{ color: "green" }}>
+                        4242 4242 4242 4242 for Payment Success
+                      </span>
+                      <br />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <span style={{ color: "red" }}>
+                        4000 0000 0000 9995 for Payment Declines
+                      </span>
+                      <br />
+                    </small>
+                  </p>
+                ) : (
+                  <></>
+                )}
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
+      </section>
     );
   };
 
