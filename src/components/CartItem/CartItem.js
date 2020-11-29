@@ -26,7 +26,7 @@ function CartItem({ cartItem, user, loadCartData, label }) {
       console.log(
         `Handling Quantity... for qty ${qtyValue} and cartId ${cartId}`
       );
-      await updateQuantity(cartId, qtyValue);
+      await updateQuantity(user.token, cartId, qtyValue);
       await loadCartData();
     }
   };
@@ -41,7 +41,7 @@ function CartItem({ cartItem, user, loadCartData, label }) {
         "Remove item Request accepted.. handle it for cartId",
         cartId
       );
-      await deleteCartItem(cartId);
+      await deleteCartItem(user.token, cartId);
       await loadCartData();
     }
   };

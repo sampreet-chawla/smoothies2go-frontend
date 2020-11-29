@@ -1,3 +1,7 @@
+.cart {
+  text-align: center;
+}
+
 .cart-summary-container {
   display: grid;
   justify-content: center;

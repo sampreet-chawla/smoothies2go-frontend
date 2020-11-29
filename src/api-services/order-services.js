@@ -1,11 +1,14 @@
 import { BACKEND_URL } from "../constants";
 import axios from "axios";
 
-export const updateOrderPaid = async (orderId) => {
+export const updateOrderPaid = async (token, orderId) => {
   try {
     const data = await axios({
       method: "put",
       url: `${BACKEND_URL}/api/orders/paid/id/${orderId}`,
+      headers: {
+        Authorization: `bearer ${token}`,
+      },
     });
     console.log("updateOrderPaid data", data.data);
     const orderDetails = data.data.data;
@@ -17,11 +20,14 @@ export const updateOrderPaid = async (orderId) => {
   }
 };
 
-export const updateOrderCancelled = async (orderId) => {
+export const updateOrderCancelled = async (token, orderId) => {
   try {
     const data = await axios({
       method: "put",
       url: `${BACKEND_URL}/api/orders/cancel/id/${orderId}`,
+      headers: {
+        Authorization: `bearer ${token}`,
+      },
     });
     console.log("updateOrderCancelled data", data.data);
     const orderDetails = data.data.data;

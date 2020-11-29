@@ -77,7 +77,7 @@ function Confirmation({ user, cartData, loadCartData, label }) {
     if (query.get("success")) {
       // Update Order status in Backend database
       const orderId = query.get("orderId");
-      const order = await updateOrderPaid(orderId);
+      const order = await updateOrderPaid(user.token, orderId);
       setOrder(order);
       await loadCartData();
       console.log("Success order: ", order);
@@ -86,7 +86,7 @@ function Confirmation({ user, cartData, loadCartData, label }) {
     }
     if (query.get("canceled")) {
       // Update Order status in Backend database
-      const order = await updateOrderCancelled(order.orderId);
+      const order = await updateOrderCancelled(user.token, order.orderId);
       setOrder(order);
 
       // Set Failed message
@@ -109,7 +109,7 @@ function Confirmation({ user, cartData, loadCartData, label }) {
         {
           method: "POST",
           headers: {
-            // Authorization: `bearer ${token}`,
+            Authorization: `bearer ${user.token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({

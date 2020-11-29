@@ -3,9 +3,13 @@ import axios from "axios";
 
 export const getCartItems = async (user) => {
   try {
-    const res = await axios.get(
-      `${BACKEND_URL}/api/cartitems/userId/${user._id}`
-    );
+    const res = await axios({
+      method: "get",
+      url: `${BACKEND_URL}/api/cartitems/userId/${user._id}`,
+      headers: {
+        Authorization: `bearer ${user.token}`,
+      },
+    });
     const cartData = await res.data.data;
     return cartData;
   } catch (error) {
@@ -15,11 +19,15 @@ export const getCartItems = async (user) => {
   }
 };
 
-export const updateQuantity = async (cartId, qty) => {
+export const updateQuantity = async (token, cartId, qty) => {
   try {
-    const res = await axios.put(
-      `${BACKEND_URL}/api/cartitems/id/${cartId}/qty/${qty}`
-    );
+    const res = await axios({
+      method: "put",
+      url: `${BACKEND_URL}/api/cartitems/id/${cartId}/qty/${qty}`,
+      headers: {
+        Authorization: `bearer ${token}`,
+      },
+    });
     const cartData = await res.data.data;
     return cartData;
   } catch (error) {
@@ -27,9 +35,15 @@ export const updateQuantity = async (cartId, qty) => {
   }
 };
 
-export const deleteCartItem = async (cartId) => {
+export const deleteCartItem = async (token, cartId) => {
   try {
-    const res = await axios.delete(`${BACKEND_URL}/api/cartitems/id/${cartId}`);
+    const res = await axios({
+      method: "delete",
+      url: `${BACKEND_URL}/api/cartitems/id/${cartId}`,
+      headers: {
+        Authorization: `bearer ${token}`,
+      },
+    });
     const cartData = await res.data.data;
     return cartData;
   } catch (error) {
