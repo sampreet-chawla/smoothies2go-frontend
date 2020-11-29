@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { addToCart } from "../../api-services/item-service";
 import { AppContext } from "../App/App";
 
@@ -8,20 +7,19 @@ function CategoryRow({ title, items }) {
 
   const handleAddToCart = async (item) => {
     console.log(`Clicked ${item.item_name}`);
-    // if (user) {
-    //   const userId = user._id;
-    //   console.log(`Adding cart for user -  ${userId}`);
-    // } else {
-    //   alert("Please Login to add items to cart");
-    // }
-
-    await addToCart({
-      user: user._id,
-      item: item._id,
-      qty: 1,
-    });
-    window.alert(`1 ${item.item_name} added to cart`);
-    loadCartData();
+    if (user) {
+      const userId = user._id;
+      console.log(`Adding cart for user -  ${userId}`);
+      await addToCart({
+        user: user._id,
+        item: item._id,
+        qty: 1,
+      });
+      window.alert(`1 ${item.item_name} added to cart`);
+      loadCartData();
+    } else {
+      alert("Please Login to add items to cart");
+    }
   };
 
   const loadItemCards = () => {
@@ -45,12 +43,12 @@ function CategoryRow({ title, items }) {
             {/* <!--Card content--> */}
             <div className="card-body text-center">
               <strong>
-                <a href="" className="dark-grey-text">
+                <a href="#!" className="dark-grey-text">
                   <h5>{item.item_name}</h5>
                 </a>
               </strong>
               <h5>
-                <a href="" className="grey-text">
+                <a href="#!" className="grey-text">
                   {item.description}
                 </a>
               </h5>

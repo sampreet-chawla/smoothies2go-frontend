@@ -1,10 +1,26 @@
-@import "./config.scss";
+:root {
+  --light-yellow: #f4f0bb;
+
+  /* --light-green: #87c38f;
+  --dark-green: #226f54;
+  --red: #da2c38;
+  --maroon: #43291f; */
+}
+
+* {
+  box-sizing: border-box;
+  /* margin: 0 auto; */
+  align-items: center;
+}
+
+body {
+  background-color: var(--light-yellow);
+}
 
 .App {
   text-align: center;
-  background-color: $eucalyptus;
 }
-
+/* 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -38,4 +54,10 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+main {
+  margin-top: 70px;
+  margin-left: 15px;
+  margin-right: 15px;
 }

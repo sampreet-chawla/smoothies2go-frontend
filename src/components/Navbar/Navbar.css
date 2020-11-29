@@ -1,0 +1,66 @@
+.header-logo {
+  height: 60px;
+  position: absolute;
+  top: 0;
+  left: 5px;
+}
+.nav-container {
+  height: 6vh;
+  position: fixed;
+  top: 5vh;
+  z-index: 1;
+}
+
+nav.navbar-dark.default-color.navbar.navbar-expand-md {
+  padding: 0 1rem;
+}
+
+/* .navbar.navbar-dark .navbar-toggler-icon {
+  background-image: url(""); -- 150 x 150px
+} */
+.navbar {
+  padding: 0 1 rem;
+}
+
+.navbar-brand a {
+  margin-bottom: 0;
+  color: var(--light-yellow);
+  font-weight: 600;
+  font-style: italic;
+}
+
+.nav-item a {
+  margin: 0 5px;
+  font-size: 12px;
+  color: var(--light-yellow) !important;
+  font-weight: 600;
+  text-decoration: none;
+}
+.navbar-brand a:visited {
+  color: var(--light-yellow);
+}
+
+.nav-item a:hover {
+  background-color: rgba(76, 175, 80, 0.7) !important;
+}
+
+nav {
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* // For Search field
+.input.form-control.mr-sm-2 {
+  height: 3.8vh;
+  color: var(--light-yellow) !important;
+} */
+
+@media only screen and (min-width: 768px) {
+}
+
+@media only screen and (min-width: 1024px) {
+  .nav-item a {
+    font-size: 15px;
+  }
+}

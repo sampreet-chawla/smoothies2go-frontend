@@ -1,0 +1,53 @@
+.header-container {
+  height: 5vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--light-yellow);
+  position: fixed;
+  width: 100vw;
+  z-index: 4;
+}
+
+.header-icons {
+  padding-left: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.header-icons i {
+  margin: 5px;
+}
+.header-icons a,
+.header-cart a,
+.header-cart p,
+.header-cart i {
+  color: black;
+  font-weight: 600;
+}
+
+.header-cart {
+  height: 4vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-right: 5px;
+}
+
+.header-login {
+  margin-bottom: 0;
+  font-size: 15px;
+}
+
+.counter {
+  padding-right: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+  .header-icons {
+    padding-left: 12px;
+  }
+  .header-cart {
+    padding-right: 35px;
+  }
+}
