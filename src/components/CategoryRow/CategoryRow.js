@@ -11,7 +11,7 @@ function CategoryRow({ id, title, items }) {
     if (user) {
       const userId = user._id;
       console.log(`Adding cart for user -  ${userId}`);
-      await addToCart({
+      await addToCart(user.token, {
         user: user._id,
         item: item._id,
         qty: 1,

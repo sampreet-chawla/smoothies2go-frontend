@@ -1,15 +1,15 @@
 import "./App.css";
 import React, { useState, useEffect, createContext } from "react";
 import { Switch, Route, Link, Redirect } from "react-router-dom";
+import { getCartItems } from "../../api-services/cart-service";
+import { SHOW_CART, SHOW_ORDER } from "../../constants";
+import Header from "../Header/Header";
+import Navbar from "../Navbar/Navbar";
+import Login from "../Login/Login";
+import SignUp from "../SignUp/SignUp";
 import ItemsDisplay from "../ItemsDisplay/ItemsDisplay";
 import Cart from "../Cart/Cart";
 import Confirmation from "../Confirmation/Confirmation";
-import { getCartItems } from "../../api-services/cart-service";
-import { SHOW_CART, SHOW_ORDER } from "../../constants";
-import Navbar from "../Navbar/Navbar";
-import Header from "../Header/Header";
-import Login from "../Login/Login";
-import SignUp from "../SignUp/SignUp";
 import Footer from "../Footer/Footer";
 
 export const AppContext = createContext(null);

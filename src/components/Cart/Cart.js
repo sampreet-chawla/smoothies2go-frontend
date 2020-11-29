@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Cart.css";
 import CartItem from "../CartItem/CartItem";
 import { Link } from "react-router-dom";
 import { round } from "../../utils";
 import { SHOW_CART, SHOW_ORDER } from "../../constants";
-import { MDBRow, MDBCol, MDBInput, MDBCard, MDBCardBody } from "mdbreact";
+import { MDBRow, MDBCol, MDBCard, MDBCardBody } from "mdbreact";
 
 function Cart({ user, cartData, loadCartData, label, handleClick }) {
   // Build the Empty Cart Message
@@ -77,7 +77,7 @@ function Cart({ user, cartData, loadCartData, label, handleClick }) {
               <MDBCardBody>
                 <h2 className="h2-responsive">Summary</h2>
                 <p>
-                  Sub-total Price:{" "}
+                  Sub-Total Price:{" "}
                   <span className="price-align">${subTotalPrice}</span>
                 </p>
                 <p>

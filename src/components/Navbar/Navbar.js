@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -32,7 +31,8 @@ function Navbar() {
         <MDBNavbarToggler onClick={toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
           <MDBNavbarNav left>
-            <MDBNavItem active>
+            {/* <MDBNavItem active> */}
+            <MDBNavItem>
               <MDBNavLink to="/#category1" onClick={closeBurger}>
                 Popular
               </MDBNavLink>

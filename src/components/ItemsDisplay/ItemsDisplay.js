@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { getItemsByCategories } from "../../api-services/item-service";
-import { BACKEND_URL } from "../../constants";
 import CategoryRow from "../CategoryRow/CategoryRow";
-import axios from "axios";
 
-function ItemsDisplay(props) {
+function ItemsDisplay() {
   const [itemsList, setItemsList] = useState([]);
 
   const getItemsList = async () => {
     try {
-      const data = await axios.get(`${BACKEND_URL}/api/items/category-groups`);
-      const itemsData = await data.data.data;
+      const itemsData = await getItemsByCategories();
       setItemsList(itemsData);
     } catch (err) {
       console.log(

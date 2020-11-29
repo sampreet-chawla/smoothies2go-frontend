@@ -13,13 +13,14 @@ export const getItemsByCategories = async () => {
   }
 };
 
-export const addToCart = async (cartData) => {
+export const addToCart = async (token, cartData) => {
   try {
     const data = await axios({
       method: "post",
       url: `${BACKEND_URL}/api/cartitems/`,
       headers: {
         "Content-Type": "application/json",
+        Authorization: `bearer ${token}`,
       },
       data: JSON.stringify(cartData),
     });
