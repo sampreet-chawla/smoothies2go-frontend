@@ -11,6 +11,8 @@ import {
   updateOrderPaid,
   updateOrderCancelled,
 } from "../../api-services/order-services";
+import { MDBRow, MDBCol, MDBCard, MDBCardBody } from "mdbreact";
+import "./Confirmation.css";
 
 import { loadStripe } from "@stripe/stripe-js";
 // Make sure to call `loadStripe` outside of a component’s render to avoid
@@ -23,49 +25,70 @@ function Confirmation({ user, cartData, loadCartData, label }) {
 
   const loadOrderContent = () => {
     return (
-      <div className="cover" style={{ margin: "0 20px" }}>
-        <div className="confirm">
-          {order.order_status === PAID_STATUS ? (
-            <h4 className="h4-responsive">
-              Thank You! Your order has been confirmed, and will be ready for
-              pickup in 15-20minutes, here are the details -
-            </h4>
-          ) : (
-            <h4 class="h4-responsive">
-              The order has been cancelled, here are the details -
-            </h4>
-          )}
-          <br />
-          <br />
-          <div style={{ textAlign: "left" }}>
-            {/* <h5 className="h5-responsive">
+      <MDBRow>
+        <MDBCol md="0">
+          <MDBCard>
+            <MDBCardBody>
+              <div className="cover" style={{ margin: "0 20px" }}>
+                <div className="confirm">
+                  {order.order_status === PAID_STATUS ? (
+                    <p>
+                      Thank You! Your order will be ready for pickup in
+                      15-20mins.
+                    </p>
+                  ) : (
+                    <p>The order has been cancelled, here are the details -</p>
+                  )}
+                  <br />
+                  <div style={{ textAlign: "left" }}>
+                    {/* <h5 className="h5-responsive">
               Confirmation will be sent to your email: {}
             </h5> */}
-            <h5 className="h5-responsive">Order number: #{order._id}</h5>
-            <h5 className="h5-responsive">
-              Order date: {new Date(order.order_date_time).toString()}
-            </h5>
-            <h5 className="h5-responsive">Order total: ${order.total_price}</h5>
-            <h5 className="h5-responsive">
-              Order Status: {order.order_status}
-            </h5>
-            <h5 className="h5-responsive">
-              Please visit us again! If you have missed something -
-            </h5>
-            <Link to="/">
-              <button type="button" className="btn btn-primary" role="link">
-                Continue Shopping
-              </button>
-            </Link>
-          </div>
-        </div>
-      </div>
+                    <p>
+                      Order#: <span className="right-align">#{order._id}</span>
+                    </p>
+                    <p>
+                      Order Date:{" "}
+                      <span className="right-align">
+                        {new Date(order.order_date_time).toString()}
+                      </span>
+                    </p>
+                    <p>
+                      Order Total:{" "}
+                      <span className="right-align">${order.total_price}</span>
+                    </p>
+                    <p>
+                      Order Status:{" "}
+                      <span className="right-align">{order.order_status}</span>
+                    </p>
+                    <br />
+                    <p style={{ textAlign: "center" }}>
+                      Please visit us again!
+                    </p>
+                    <p style={{ textAlign: "center" }}>
+                      <Link to="/">
+                        <button
+                          type="button"
+                          className="btn btn-primary"
+                          role="link"
+                        >
+                          Continue Shopping
+                        </button>
+                      </Link>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </MDBCardBody>
+          </MDBCard>
+        </MDBCol>
+      </MDBRow>
     );
   };
 
   const Message = ({ message }) => (
     <section>
-      <h2 className="h2-responsive">{message}</h2>
+      <h4 className="h4-responsive">{message}</h4>
       <hr />
     </section>
   );
@@ -82,7 +105,7 @@ function Confirmation({ user, cartData, loadCartData, label }) {
       await loadCartData();
       console.log("Success order: ", order);
       // Set success message
-      setMessage("Thank You! Your Order is placed!");
+      setMessage("Order Confirmation");
     }
     if (query.get("canceled")) {
       // Update Order status in Backend database
@@ -152,11 +175,21 @@ function Confirmation({ user, cartData, loadCartData, label }) {
   };
 
   return message ? (
-    <div
-      className="order-confirmation"
-      style={{ textAlign: "center", width: "80vw" }}
-    >
-      <Message message={message} />
+    <div className="confirmation-container">
+      <div className="confirmation-header">
+        {/* Need to make the images transparent. */}
+        {/* <img
+          src="https://i.imgur.com/SxW9gfet.png"
+          alt="coconut photo"
+          width="50px"
+        /> */}
+        <Message message={message} />
+        {/* <img
+          src="https://i.imgur.com/zdnKWQft.png"
+          alt="pineapple photo"
+          width="50px"
+        /> */}
+      </div>
       {order && order.order_status ? loadOrderContent() : <></>}
     </div>
   ) : (

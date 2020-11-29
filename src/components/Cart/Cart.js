@@ -78,15 +78,15 @@ function Cart({ user, cartData, loadCartData, label, handleClick }) {
                 <h2 className="h2-responsive">Summary</h2>
                 <p>
                   Sub-Total Price:{" "}
-                  <span className="price-align">${subTotalPrice}</span>
+                  <span className="right-align">${subTotalPrice}</span>
                 </p>
                 <p>
                   Fees and Tax:{" "}
-                  <span className="price-align">${feesAndTax}</span>
+                  <span className="right-align">${feesAndTax}</span>
                 </p>
                 <p>
                   Total Price:{" "}
-                  <span className="price-align">${totalPrice}</span>
+                  <span className="right-align">${totalPrice}</span>
                 </p>
                 {/* If ShOW_CART, then show "Confirm Purchase" button  */}
                 {label === SHOW_CART ? (
