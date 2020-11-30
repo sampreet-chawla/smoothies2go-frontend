@@ -12,7 +12,11 @@ function Cart({ user, cartData, loadCartData, label, handleClick }) {
     <section className="cart">
       <p>There are no items in the cart.</p>
       <Link to="/">
-        <button type="button" className="btn btn-primary">
+        <button
+          type="button"
+          className="btn default-color btn-lg my-0 p"
+          style={{ borderRadius: "5px", fontSize: "10px", color: "black" }}
+        >
           Happy Shopping !!!
         </button>
       </Link>
@@ -49,7 +53,11 @@ function Cart({ user, cartData, loadCartData, label, handleClick }) {
       {loadCartItems()}
       <div style={{ textAlign: "center" }}>
         <Link to="/">
-          <button type="button" className="btn btn-primary">
+          <button
+            type="button"
+            className="btn default-color btn-lg my-0 p"
+            style={{ borderRadius: "5px", fontSize: "10px", color: "black" }}
+          >
             Continue Shopping
           </button>
         </Link>
@@ -94,7 +102,12 @@ function Cart({ user, cartData, loadCartData, label, handleClick }) {
                     <Link to="/confirmation">
                       <button
                         type="button"
-                        className="btn btn-primary"
+                        className="btn default-color btn-lg my-0 p"
+                        style={{
+                          borderRadius: "5px",
+                          fontSize: "10px",
+                          color: "black",
+                        }}
                         role="link"
                       >
                         <i className="fa fa-lock"></i> &nbsp; Confirm Purchase
@@ -102,11 +115,16 @@ function Cart({ user, cartData, loadCartData, label, handleClick }) {
                     </Link>
                   </p>
                 ) : (
-                  <p>
+                  <p style={{ textAlign: "center" }}>
                     {/* Else for SHOW_ORDER, display the "Make Payment" button to direct to Payment Server */}
                     <button
                       type="button"
-                      className="btn btn-primary"
+                      className="btn default-color btn-lg my-0 p"
+                      style={{
+                        borderRadius: "5px",
+                        fontSize: "10px",
+                        color: "black",
+                      }}
                       role="link"
                       onClick={() =>
                         handleClick(subTotalPrice, feesAndTax, totalPrice)

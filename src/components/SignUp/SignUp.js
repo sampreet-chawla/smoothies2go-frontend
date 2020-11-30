@@ -75,7 +75,7 @@ function SignUp(props) {
                     {alertMsg}
                   </p>
                 )}
-                <div className="blue-text">
+                <div className="default-text">
                   <input
                     value={formData.username}
                     name="username"
@@ -138,7 +138,10 @@ function SignUp(props) {
                   <br />
                 </div>
                 <div style={{ textAlign: "center" }}>
-                  <MDBBtn color="primary" type="submit">
+                  <MDBBtn
+                    type="submit"
+                    style={{ borderRadius: "5px", fontSize: "10px" }}
+                  >
                     Sign Up
                   </MDBBtn>
                 </div>

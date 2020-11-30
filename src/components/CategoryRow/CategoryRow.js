@@ -44,22 +44,22 @@ function CategoryRow({ id, title, items }) {
             {/* <!--Card content--> */}
             <div className="card-body text-center">
               <strong>
-                <a href="#!" className="dark-grey-text">
-                  <h5>{item.item_name}</h5>
-                </a>
+                <h6 className="font-weight-bold black-text">
+                  <strong>{item.item_name}</strong>
+                </h6>
               </strong>
-              <h5>
-                <a href="#!" className="grey-text">
-                  {item.description}
-                </a>
-              </h5>
-
-              <h4 className="font-weight-bold black-text">
+              <p style={{ color: "gray", fontSize: "12px" }}>
+                {item.description}
+              </p>
+              <h6 className="font-weight-bold black-text">
                 <strong>${item.price}</strong>
-              </h4>
+              </h6>
               <button
-                className="btn btn-primary btn-md my-0 p"
+                className="btn default-color btn-lg my-0 p"
+                // className="btn deep-orange lighten-1 btn-lg my-0 p"
+                // className="btn btn-md my-0 p"
                 type="submit"
+                style={{ borderRadius: "5px", fontSize: "10px" }}
                 onClick={() => handleAddToCart(item)}
               >
                 Add to cart
@@ -75,15 +75,13 @@ function CategoryRow({ id, title, items }) {
 
   return (
     <section className="text-center mb-4" id={id}>
-      <div className="hidden-div">
-        <h1>Hidden Div</h1>
-      </div>
       <h3
-        className="h3-responsive"
-        style={{ backgroundColor: "pink", padding: "10px" }}
+        className="h3-responsive category-title"
+        style={{ paddingBottom: "10px", paddingTop: "15vh" }}
       >
         <strong>
-          <em>{title}</em>
+          {/* <em>{title}</em> */}
+          {title}
         </strong>
       </h3>
       <div className="row wow fadeIn">{loadItemCards()}</div>

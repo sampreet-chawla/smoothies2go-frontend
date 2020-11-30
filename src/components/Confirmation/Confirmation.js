@@ -41,9 +41,6 @@ function Confirmation({ user, cartData, loadCartData, label }) {
                   )}
                   <br />
                   <div style={{ textAlign: "left" }}>
-                    {/* <h5 className="h5-responsive">
-              Confirmation will be sent to your email: {}
-            </h5> */}
                     <p>
                       Order#: <span className="right-align">#{order._id}</span>
                     </p>
@@ -68,8 +65,12 @@ function Confirmation({ user, cartData, loadCartData, label }) {
                     <p style={{ textAlign: "center" }}>
                       <Link to="/">
                         <button
-                          type="button"
-                          className="btn btn-primary"
+                          className="btn default-color btn-lg my-0 p"
+                          style={{
+                            borderRadius: "5px",
+                            fontSize: "10px",
+                            color: "black",
+                          }}
                           role="link"
                         >
                           Continue Shopping
@@ -88,8 +89,7 @@ function Confirmation({ user, cartData, loadCartData, label }) {
 
   const Message = ({ message }) => (
     <section>
-      <h4 className="h4-responsive">{message}</h4>
-      <hr />
+      <h2 className="h2-responsive">{message}</h2>
     </section>
   );
 

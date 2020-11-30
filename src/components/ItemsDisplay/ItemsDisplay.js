@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getItemsByCategories } from "../../api-services/item-service";
 import CategoryRow from "../CategoryRow/CategoryRow";
+import "./ItemsDisplay.css";
+import SmoothiesImage from "../../img/smoothies2go_3049_2000.png";
 
 function ItemsDisplay() {
   const [itemsList, setItemsList] = useState([]);
@@ -40,19 +42,27 @@ function ItemsDisplay() {
   //     <h4 className="h4-responsive">Loading...</h4>
   //   );
 
-  const rowJSX = itemsList.map((row, index) => (
-    <CategoryRow
-      id={`category${index + 1}`}
-      key={index}
-      title={row.category}
-      items={row.items}
-    />
-  ));
-
   if (itemsList) {
-    return <div className="items-display">{rowJSX}</div>;
+    const rowJSX = itemsList.map((row, index) => (
+      <CategoryRow
+        id={`category${index + 1}`}
+        key={index}
+        title={row.category}
+        items={row.items}
+      />
+    ));
+    return (
+      <div className="items-display">
+        <img
+          src={SmoothiesImage}
+          alt="Smothies2GO Image"
+          className="smoothies-image"
+        />
+        {rowJSX}
+      </div>
+    );
   } else {
-    return <h4 className="h4-responsive">Loading...</h4>;
+    return <h4 style={{ color: "green" }}>Loading...</h4>;
   }
 }
 

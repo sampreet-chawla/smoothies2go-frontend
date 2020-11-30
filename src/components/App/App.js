@@ -94,7 +94,6 @@ function App({ history }) {
         )}
       />
       <Route component={Navbar} />
-      {/* <Navbar /> */}
       {/* TODO - To be replaced with a NavBar */}
       <div className="navbar" style={{ textAlign: "right" }}>
         <Link to="/cart">

@@ -1,6 +1,7 @@
-.hidden-div h1 {
+/* .hidden-div h1 {
   opacity: 0;
   height: 30vw;
+  background-color: transparent;
 }
 
 @media only screen and (min-width: 768px) {
@@ -19,4 +20,8 @@
   .hidden-div h1 {
     height: 0.8vw;
   }
+} */
+
+.category-title {
+  text-shadow: 2px 2px 2px var(--light-sea-green);
 }

@@ -6,12 +6,13 @@
   display: grid;
   justify-content: center;
   align-items: center;
+  grid-gap: 5px;
 }
 
 .items-header,
 .item-details {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
   justify-content: space-between;
   align-items: center;
   text-align: center;
@@ -28,6 +29,9 @@
   float: right;
 }
 
+.summary .row {
+  justify-content: center;
+}
 @media only screen and (min-width: 768px) {
   .form-container .row {
     margin-top: 12vw;

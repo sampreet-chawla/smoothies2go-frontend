@@ -35,7 +35,7 @@ const Login = (props) => {
 
   return (
     <div className="form-container">
-      <MDBRow> 
+      <MDBRow>
         <MDBCol md="0">
           <MDBCard>
             <MDBCardBody>
@@ -46,7 +46,7 @@ const Login = (props) => {
                     {alertMsg}
                   </p>
                 )}
-                <div className="blue-text">
+                <div className="default-text">
                   <MDBInput
                     label="Your username"
                     icon="user"
@@ -72,7 +72,8 @@ const Login = (props) => {
                 >
                   <button
                     type="button"
-                    className="btn btn-primary"
+                    className="btn default-color btn-lg my-0 p"
+                    style={{ borderRadius: "5px", fontSize: "10px" }}
                     onClick={handleLogIn}
                   >
                     Login

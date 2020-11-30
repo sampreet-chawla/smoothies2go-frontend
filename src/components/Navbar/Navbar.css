@@ -35,13 +35,15 @@ nav.navbar-dark.default-color.navbar.navbar-expand-md {
   color: var(--light-yellow) !important;
   font-weight: 600;
   text-decoration: none;
+  font-style: italic;
 }
 .navbar-brand a:visited {
   color: var(--light-yellow);
 }
 
 .nav-item a:hover {
-  background-color: rgba(76, 175, 80, 0.7) !important;
+  background-color: var(--light-yellow) !important;
+  color: var(--light-sea-green) !important;
 }
 
 nav {

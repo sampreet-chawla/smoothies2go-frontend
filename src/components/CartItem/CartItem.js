@@ -49,17 +49,19 @@ function CartItem({ cartItem, user, loadCartData, label }) {
   const item = cartItem.item;
   return (
     <div className="item-details" key={cartItem._id}>
-      <p>
-        <img
-          src={item.thumbnail_image_url}
-          // className="card-img-top"
-          alt={item.item_name}
-          width="75px"
-        />
-        &ensp;
-        <span className="font-weight-bold black-text">{item.item_name}</span>
-      </p>
-      <p>${round(item.price * qty, 2)}</p>
+      <div className="cart-item-header">
+        <div className="cart-item-image">
+          <img
+            src={item.thumbnail_image_url}
+            alt={item.item_name}
+            width="75px"
+          />
+        </div>
+        <div className="cart-item-name">
+          <span className="font-weight-bold black-text">{item.item_name}</span>
+        </div>
+      </div>
+      <p className="black-text">${round(item.price * qty, 2)}</p>
       {label === SHOW_CART ? (
         <>
           {/* If SHOW_CART, then show Qty in editable mode, and also show the Remove button */}
@@ -71,8 +73,6 @@ function CartItem({ cartItem, user, loadCartData, label }) {
               name="qty"
               value={qty}
               min="1"
-              //   size="3"
-              //   maxLength="3"
               onChange={(e) => handleQuantity(e, cartItem._id)}
             />
           </p>
