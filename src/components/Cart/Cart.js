@@ -83,7 +83,9 @@ function Cart({ user, cartData, loadCartData, label, handleClick }) {
           <MDBCol md="0">
             <MDBCard>
               <MDBCardBody>
-                <h2 className="h2-responsive">Summary</h2>
+                <h3 className="h3-responsive" style={{ textAlign: "center" }}>
+                  Summary
+                </h3>
                 <p>
                   Sub-Total Price:{" "}
                   <span className="right-align">${subTotalPrice}</span>

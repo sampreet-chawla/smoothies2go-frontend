@@ -89,7 +89,9 @@ function Confirmation({ user, cartData, loadCartData, label }) {
 
   const Message = ({ message }) => (
     <section>
-      <h2 className="h2-responsive">{message}</h2>
+      <h3 className="h3-responsive">
+        <strong>{message}</strong>
+      </h3>
     </section>
   );
 
