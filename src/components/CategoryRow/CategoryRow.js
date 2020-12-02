@@ -35,7 +35,7 @@ function CategoryRow({ id, title, items }) {
         message: `1 "${item.item_name}" added to the cart`,
         messageType: "success",
       });
-      //loadCartData();
+      loadCartData();
     } else {
       setShowModal({
         show: true,
