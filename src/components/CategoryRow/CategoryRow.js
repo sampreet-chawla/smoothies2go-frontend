@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { addToCart } from "../../api-services/item-service";
 import { AppContext } from "../App/App";
 import "./CategoryRow.css";
 
+import AlertModal from "../AlertModal/AlertModal";
+
 function CategoryRow({ id, title, items }) {
   const { user, loadCartData } = React.useContext(AppContext);
+
+  const emptyShowModal = {
+    show: false,
+    title: "",
+    message: "",
+    messageType: "",
+  };
+  const [showModal, setShowModal] = useState(emptyShowModal);
+  const hideModal = () => setShowModal(emptyShowModal);
+  console.log("showModal: ", showModal);
 
   const handleAddToCart = async (item) => {
     console.log(`Clicked ${item.item_name}`);
@@ -16,10 +28,21 @@ function CategoryRow({ id, title, items }) {
         item: item._id,
         qty: 1,
       });
-      window.alert(`1 ${item.item_name} added to cart`);
-      loadCartData();
+      // window.alert(`1 ${item.item_name} added to cart`);
+      setShowModal({
+        show: true,
+        title: "Added to Cart",
+        message: `1 "${item.item_name}" added to the cart`,
+        messageType: "success",
+      });
+      //loadCartData();
     } else {
-      alert("Please Login to add items to cart");
+      setShowModal({
+        show: true,
+        title: "Please Login",
+        message: `Kindly login to add items to the cart`,
+        messageType: "alert",
+      });
     }
   };
 
@@ -75,6 +98,7 @@ function CategoryRow({ id, title, items }) {
 
   return (
     <section className="text-center mb-4" id={id}>
+      <AlertModal showModal={showModal} hideModal={hideModal} />
       <h3
         className="h3-responsive category-title"
         style={{ paddingBottom: "10px", paddingTop: "15vh" }}

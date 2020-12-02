@@ -93,7 +93,7 @@ function CartItem({ cartItem, user, loadCartData, label }) {
       ) : (
         <p>
           {/* Else for  SHOW_ORDER, display the Qty in non-editable mode, and do not show the Remove button */}
-          {`${round(item.price * qty, 2)}`}
+          {qty}
         </p>
       )}
     </div>
