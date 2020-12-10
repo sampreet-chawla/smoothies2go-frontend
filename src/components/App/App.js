@@ -15,12 +15,6 @@ import Footer from "../Footer/Footer";
 export const AppContext = createContext(null);
 
 function App({ history }) {
-  // const [user, setUser] = useState({
-  //   // _id: "5fbd601032153d001ede1ab2", // live
-  //   _id: "5fb9ddc86f02072f24037ab7", // local
-  //   username: "test",
-  //   email: "test@gmail.com",
-  // });
   const fetchUser = () => {
     const result = localStorage.getItem("user");
     return result ? JSON.parse(result) : null;
@@ -33,10 +27,8 @@ function App({ history }) {
 
   const loadCartData = async () => {
     const loggedInUser = (await user) || (await fetchUser());
-    console.log("Loading cart data for user", loggedInUser);
     if (loggedInUser) {
       const cartData = await getCartItems(loggedInUser);
-      console.log("Received cart data", cartData);
       await setCartData(cartData);
     }
   };
@@ -79,7 +71,6 @@ function App({ history }) {
     return cartData ? cartData.length : 0;
   };
 
-  // const [category, setCategory] = useState();
   return (
     <AppContext.Provider value={{ user, loadCartData }}>
       <Route
@@ -94,7 +85,7 @@ function App({ history }) {
         )}
       />
       <Route component={Navbar} />
-      {/* TODO - To be replaced with a NavBar */}
+      {/* Not Required but retained for Positioning - Was to be displayed by Navbar */}
       <div className="navbar" style={{ textAlign: "right" }}>
         <Link to="/cart">
           {" "}
@@ -105,7 +96,7 @@ function App({ history }) {
           </button>
         </Link>
       </div>
-      {/* TODO end - To be replaced with a NavBar */}
+      {/* End of div */}
       <main>
         <Switch>
           <Route

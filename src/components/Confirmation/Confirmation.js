@@ -6,6 +6,8 @@ import {
   STRIPE_PUBLISHABLE_KEY,
   PAID_STATUS,
 } from "../../constants";
+import CoconutImage from "../../img/coconut.png";
+import PineappleImage from "../../img/pineapple.png";
 
 import {
   updateOrderPaid,
@@ -180,17 +182,19 @@ function Confirmation({ user, cartData, loadCartData, label }) {
     <div className="confirmation-container">
       <div className="confirmation-header">
         {/* Need to make the images transparent. */}
-        {/* <img
-          src="https://i.imgur.com/SxW9gfet.png"
+        <img
+          // src="https://i.imgur.com/zdnKWQft.png"
+          src={CoconutImage}
           alt="coconut photo"
           width="50px"
-        /> */}
+        />
         <Message message={message} />
-        {/* <img
-          src="https://i.imgur.com/zdnKWQft.png"
+        <img
+          // src="https://i.imgur.com/zdnKWQft.png"
+          src={PineappleImage}
           alt="pineapple photo"
           width="50px"
-        /> */}
+        />
       </div>
       {order && order.order_status ? loadOrderContent() : <></>}
     </div>

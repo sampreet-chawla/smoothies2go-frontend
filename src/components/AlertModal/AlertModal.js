@@ -10,6 +10,8 @@ import {
 } from "mdbreact";
 import "./AlertModel.css";
 
+// Modal Window to display success and failure messages - Currently used while adding items to the cart
+
 function AlertModal({ showModal, hideModal }) {
   return (
     <MDBContainer>

@@ -16,19 +16,16 @@ function CategoryRow({ id, title, items }) {
   };
   const [showModal, setShowModal] = useState(emptyShowModal);
   const hideModal = () => setShowModal(emptyShowModal);
-  console.log("showModal: ", showModal);
 
   const handleAddToCart = async (item) => {
-    console.log(`Clicked ${item.item_name}`);
     if (user) {
       const userId = user._id;
-      console.log(`Adding cart for user -  ${userId}`);
       await addToCart(user.token, {
         user: user._id,
         item: item._id,
         qty: 1,
       });
-      // window.alert(`1 ${item.item_name} added to cart`);
+      // Show modal window - Added to cart
       setShowModal({
         show: true,
         title: "Added to Cart",
@@ -37,6 +34,7 @@ function CategoryRow({ id, title, items }) {
       });
       loadCartData();
     } else {
+      // Show modal window - Ask to Login
       setShowModal({
         show: true,
         title: "Please Login",
@@ -79,8 +77,6 @@ function CategoryRow({ id, title, items }) {
               </h6>
               <button
                 className="btn default-color btn-lg my-0 p"
-                // className="btn deep-orange lighten-1 btn-lg my-0 p"
-                // className="btn btn-md my-0 p"
                 type="submit"
                 style={{ borderRadius: "5px", fontSize: "10px" }}
                 onClick={() => handleAddToCart(item)}
@@ -103,10 +99,7 @@ function CategoryRow({ id, title, items }) {
         className="h3-responsive category-title"
         style={{ paddingBottom: "10px", paddingTop: "15vh" }}
       >
-        <strong>
-          {/* <em>{title}</em> */}
-          {title}
-        </strong>
+        <strong>{title}</strong>
       </h3>
       <div className="row wow fadeIn">{loadItemCards()}</div>
     </section>

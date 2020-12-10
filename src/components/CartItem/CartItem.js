@@ -15,31 +15,24 @@ function CartItem({ cartItem, user, loadCartData, label }) {
   const handleQuantity = async (event, cartId) => {
     event.preventDefault();
     const qtyValue = event.target.value;
-    console.log("qtyValue : ", typeof qtyValue);
     setQty(event.target.value);
     if (parseInt(qtyValue) <= 0) {
       window.alert("Quantity cannot be less than or equal to 0");
       setQty(1);
       window.focus(event.target);
     } else if (qtyValue !== "") {
-      console.log(
-        `Handling Quantity... for qty ${qtyValue} and cartId ${cartId}`
-      );
       await updateQuantity(user.token, cartId, qtyValue);
       await loadCartData();
     }
   };
 
-  // Remove a cart-item
+  // Confirm to remove the cart-item
   const handleRemove = async (event, cartId, itemName) => {
     event.preventDefault();
     if (
       window.confirm(`Are you sure you want to remove the Item: ${itemName}`)
     ) {
-      console.log(
-        "Remove item Request accepted.. handle it for cartId",
-        cartId
-      );
+      // Remove the cart-item
       await deleteCartItem(user.token, cartId);
       await loadCartData();
     }
