@@ -78,7 +78,7 @@ function Cart({ user, cartData, loadCartData, label, handleClick }) {
     const feesAndTax = round(subTotalPrice * 0.1, 2);
     const totalPrice = round(subTotalPrice + feesAndTax, 2);
     return (
-      <section className="summary" style={{ margin: "20px 20px" }}>
+      <section className="summary" style={{ margin: "10px" }}>
         <MDBRow>
           <MDBCol md="0">
             <MDBCard>

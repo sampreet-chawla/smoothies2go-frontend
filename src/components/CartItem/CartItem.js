@@ -7,7 +7,6 @@ import {
 
 import { round } from "../../utils";
 import { SHOW_CART } from "../../constants";
-// import "./Cart.scss";
 
 function CartItem({ cartItem, user, loadCartData, label }) {
   const [qty, setQty] = useState(parseInt(cartItem.qty));
@@ -61,7 +60,7 @@ function CartItem({ cartItem, user, loadCartData, label }) {
           <span className="font-weight-bold black-text">{item.item_name}</span>
         </div>
       </div>
-      <p className="black-text">${round(item.price * qty, 2)}</p>
+      <p>${round(item.price * qty, 2)}</p>
       {label === SHOW_CART ? (
         <>
           {/* If SHOW_CART, then show Qty in editable mode, and also show the Remove button */}
