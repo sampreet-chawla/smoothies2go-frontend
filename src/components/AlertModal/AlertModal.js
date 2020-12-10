@@ -8,11 +8,12 @@ import {
   MDBModalFooter,
   MDBIcon,
 } from "mdbreact";
+import "./AlertModel.css";
 
 function AlertModal({ showModal, hideModal }) {
   return (
     <MDBContainer>
-      <MDBModal isOpen={showModal.show} toggle={hideModal}>
+      <MDBModal isOpen={showModal.show} toggle={hideModal} size="sm" centered>
         <MDBModalHeader>
           {showModal.messageType === "success" ? (
             <MDBIcon icon="check-circle" className="green-text pr-3" />
