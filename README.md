@@ -2,13 +2,15 @@
 
 The Smoothies2Go is a mockup project to help the any Smoothies Cafe' clients to pre-order online and pickup Smoothies on the Go. This is an effort to promote the business and sales of joints by encouraging their clients and customers to pre-order and pick their items on the go. This will save the customer's time, and also support social distancing in the Corona Pandemic situation. The idea is to expand the project to make it a cheaper option to DoorDash, UberEats and Grubhub and save restaurant owners and joint owners the high commission charges (approx. 20% commission per order) which cuts down on their profits.
 
+![Smoothies2Go](./docs/smoothies2go_small.png)
+
 ### About Project
 
 - Frontend Repo deployed in netlify
 
-  [Website](https://smoothies2go.netlify.app/)
+  [Website Live](https://smoothies2go.netlify.app/)
 
-  Technologies - React, MBBootstrap, Axios
+  Technologies - React, MBBootstrap, Axios, Stripe
 
   References
 
@@ -20,7 +22,9 @@ The Smoothies2Go is a mockup project to help the any Smoothies Cafe' clients to 
 
   [Backend App](https://smoothies2go-express-backend.herokuapp.com)
 
-  Technologies - Express and MongoDB
+  [Backend Repo](https://github.com/sampreet-chawla/smoothies2go_express_api)
+
+  Technologies - Express, MongoDB, Stripe
 
   It provides Backend APIs for Smoothies2go, and also acts as Stripe Payment Server
 
@@ -28,52 +32,55 @@ The Smoothies2Go is a mockup project to help the any Smoothies Cafe' clients to 
 
 This repo contains the frontend code for the Smoothies2Go Project. It was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### Wireframe
+<!-- ### Wireframe
 
-[Mobile Layout](https://res.cloudinary.com/dreamer123/image/upload/v1605822175/Capstone/Fresh-To-Go_-_Mobile_Layout_rjwwyx.png)
+* [Mobile Layout](https://res.cloudinary.com/dreamer123/image/upload/v1605822175/Capstone/Fresh-To-Go_-_Mobile_Layout_rjwwyx.png) -->
 
 ### React Architecture Diagram
 
-[React Architecture Diagram Link](https://res.cloudinary.com/dreamer123/image/upload/v1605822428/Capstone/Smoothies2Go-React-Arcitecture-Diagram_wm5hl7.png)
+- [React Architecture Diagram Link](./docs/smoothies2go_react_architecture.png)
 
-## Notion
+- <a href="./docs/smoothies2go_react_architecture.png" target="_blank">React Architecture Diagram Link</a>
 
-[Notion Link](https://www.notion.so/Smoothies2Go-planning-1cfe62a022084da4bb7fa08bb1222e43)
+<!-- ### Notion
 
-## MVPs and Post MVPs
+[Notion Link](https://www.notion.so/Smoothies2Go-planning-1cfe62a022084da4bb7fa08bb1222e43) -->
 
-### MVPs
+### MVPs and Post MVPs
 
-Project Planning and Documentation
-Setup repos with folder structure
-Initial Deploy to heroku and netlify
-Java Spring with Database Review
-Enity builtup
-Controller builtup
-Seed postgres/mongodb with menu items
-Material Navbar Integration
-Material MenuBar Integration
-Menu Display with Categories
-Detail Display
-Add to Cart
-Edit and Delete From Cart
-Checkout Item
-Confirmation Page
-CSS Styling and Responsive Layout
+- #### MVPs - Completed
 
-### Post-MVP
+  - Project Planning and Documentation
+  - Setup repos with folder structure
+  - Initial Deploy to heroku and netlify
+  - NodeJS / Express Backend with MongoDB database setup
+  - Model built-up
+  - Controller built-up
+  - Seed mongodb with items
+  - MDNavbar Navbar Integration
+  - Header Integration
+  - Menu Display with Categories
+  - Add to Cart
+  - Edit and Delete From Cart
+  - Checkout Cart
+  - Confirmation Page
+  - CSS Styling and Responsive Layout
 
-Stripe Payment Integration
-User Signup, Sign and Signout
-Search bar
-My Orders
-Framer Motion
-SASS Styling
-Add carousel
-Update Documentation
-Code Cleanup
+- #### Post-MVP
+
+  - Stripe Payment Integration - Completed
+  - User Signup, Login and Logout - Completed
+  - Search bar - To be done
+  - Edit Profile = To be done
+  - My Orders - To be done
+  - Framer Motion / Animation - nice to have
+  - SASS/SCSS Styling - nice to have
+  - Update Documentation - Ongoing, completed for current code
+  - Code Cleanup - Completed for current code
 
 ### Libraries
 
-- react-router and react-router-dom for routing the pages
-- axios for backend API calls
+- React routers and hooks
+- Axios for backend API calls
+- Stripe for Stripe Integration
+- MDBootstrap for Navbar, Card display, Sign Up and Login pages
