@@ -63,13 +63,13 @@ function SignUp(props) {
     }
   };
   return (
-    <div className="form-container">
+    <div className="signup-form-container">
       <MDBRow>
         <MDBCol md="0">
           <MDBCard>
             <MDBCardBody>
               <form onSubmit={handleSignUp}>
-                <p className="h4 text-center py-4">Sign up</p>
+                <p className="h4 text-center py-4 signup-title">Sign up</p>
                 {alertMsg && (
                   <p style={{ color: "red", textAlign: "center" }}>
                     {alertMsg}
