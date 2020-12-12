@@ -40,7 +40,8 @@ This repo contains the frontend code for the Smoothies2Go Project. It was bootst
 
 - [React Architecture Diagram Link](./docs/smoothies2go_react_architecture.png)
 
-- <a href="./docs/smoothies2go_react_architecture.png" target="_blank">React Architecture Diagram Link</a>
+<!-- - Learning - Anchor tag does not open the specified href in a blank page  -->
+<!-- - <a href="./docs/smoothies2go_react_architecture.png" target="_blank">React Architecture Diagram Link</a> -->
 
 <!-- ### Notion
 
