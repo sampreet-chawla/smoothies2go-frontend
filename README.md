@@ -20,7 +20,7 @@ The Smoothies2Go is a mockup project to help the any Smoothies Cafe' clients to 
 
 - Backend Repo deployed in Render (since Nov, 20 2022) - Migrated from Heroku (since Nov 17 2020) after it became paid service 
 
-  [Backend App](https://smoothies2go-express-backend.onrender.com) [Old Heroku URL](https://smoothies2go-express-backend.herokuapp.com)
+  [Backend App](https://smoothies2go-express-backend.onrender.com),  [Old Heroku URL](https://smoothies2go-express-backend.herokuapp.com)
 
   [Backend Repo](https://github.com/sampreet-chawla/smoothies2go_express_api)
 
