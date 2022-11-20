@@ -18,7 +18,7 @@ The Smoothies2Go is a mockup project to help the any Smoothies Cafe' clients to 
         - [MDBootstrap eCommence Template](https://mdbootstrap.com/freebies/jquery/e-commerce/)
         - [Stripe](https://stripe.com/docs/checkout/integration-builder)
 
-- Backend Repo deployed in Heroku
+- Backend Repo deployed in Render (since Nov, 20 2022) - Migrated from Heroku (since Nov 17 2020) after it became paid service 
 
   [Backend App](https://smoothies2go-express-backend.herokuapp.com)
 
